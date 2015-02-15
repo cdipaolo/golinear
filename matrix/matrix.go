@@ -1,8 +1,6 @@
 package matrix
 
 import "errors"
-//import "fmt"
-
 type Matrix [][]float64
 
 func abs(n float64) float64 {
@@ -17,6 +15,17 @@ func copy(a []float64) []float64 {
 		b[i] = val
 	}
 	return b
+}
+
+// evaluates if two arrays of float64's are very close to equal
+func solutionApproxEquals(a []float64, b []float64) bool {
+	if cap(a) != cap(b) {return false}
+	ε := 1e-8
+	for i,_ := range a {
+		diff := abs(a[i] - b[i])
+		if diff > ε {return false}
+	}
+	return true
 }
 
 
@@ -86,21 +95,19 @@ func (a Matrix) Gauss() ([]float64, error) {
 	if cap((a)[0]) != cap(a)+1 {
 		return nil, errors.New("Matrix is not an augmented square")
 	}
-	//fmt.Println(a)
 	n := cap(a)
 
 	for i:=0 ; i < n-1 ; i++ {
 		// find the pivot, and move around matrix such that leading 
 		// value in pivot row is not 0
 		if a[i][i] == 0 {
-			//fmt.Println("Zero")
 			broken := false
-			for r:=i ; r < n-1 ; r++ {
+			for r:=i+1 ; r < n ; r++ {
 				if !broken {
+
 					if a[r][i] != 0 {
 						a[i], a[r] = a[r], a[i]
 						broken = true
-						continue
 					}
 				}
 			}
@@ -114,27 +121,70 @@ func (a Matrix) Gauss() ([]float64, error) {
 			}
 		}
 	}
-	//fmt.Println("Gaussian Row Reduced: ",a)
-
 	// back substitute
 	b := make([]float64, cap(a))
 	for i:=n-1 ; i > -1 ; i-- {
-		if (a[i][i] == 0 && a[i][n] != 0) || (a[i][i] != 0 && a[i][n] == 0) {
+		if a[i][i] == 0 && a[i][n] != 0 {
 			return nil, errors.New("Matrix inconsistant")
 		} else if a[i][i] == 0 && a[i][n] == 0 {
-			return nil, errors.New("Matrix has no solutions")
+			return nil, errors.New("Matrix has infinitely many solutions")
 		}
 
+		if a[i][i] != 0 && a[i][n] == 0 {
+			b[i] = 0
+		} else {
+			b[i] = a[i][n] / a[i][i]
+		}
 
-		b[i] = a[i][n] / a[i][i]
-		//fmt.Println("Matrix: ", a)
-		//fmt.Println("Solutions: ", b)
 		for j:=0 ; j < i ; j++ {
 			a[j][n] -= a[j][i] * b[i]
 			a[j][i] = 0
 		}
 	}
-	//fmt.Println("Solutions: ",b)
 	return b,nil
+}
+
+
+// called on a square matrix and takes the solution matrix 'b' as an argument
+// returns an array of float64's representing the solution matrix [x0,x1,x2,...]
+func (a Matrix) Solution(b []float64) (x []float64,err error) {
+	// check if matrix is a square
+	if cap(a) != cap(a[0]) {
+		return nil, errors.New("Matrix is not a square")
+	}
+
+	n := cap(a)
+
+	// create the augmented matrix
+	m := make(Matrix, n)
+	for i,_ := range m {
+		m[i] = make([]float64, n+1)
+	}
+	for i:=0 ; i < n ; i++ {
+		for j:=0 ; j <= n ; j++ {
+			if j < n{
+				m[i][j] = a[i][j]
+			} else {
+				m[i][j] = b[i]
+			}
+		}
+	}
+	x,err = m.Gauss()
+	return
+}
+
+// returns an identity matrix of size n x n
+func Identity(n int8) Matrix {
+	a := make(Matrix,n)
+	for i,_ := range a {
+		a[i] = make([]float64, n)
+	}
+
+	// assign the values
+	for i:=0 ; i < int(n) ; i++ {
+		a[i][i] = 1
+	}
+
+	return a
 }
 
