@@ -98,7 +98,7 @@ func TestSolution(t *testing.T) {
 func TestCreateMatrix(t *testing.T) {
 	for i:=0 ; i < 10 ; i++ {
 		for j:=0 ; j < 10 ; j++ {
-			a := CreateMatrix(i,j)
+			a := CreateMatrix(uint8(i),uint8(j))
 			if i != 0 && j != 0 {
 				if a.Columns() != j {
 					t.Error(

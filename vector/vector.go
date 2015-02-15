@@ -17,7 +17,7 @@ func (z Vector) Copy() Vector {
 }
 
 // creates a zero-filled vector of capacity given in the arguments
-func CreateVector(i int) Vector {
+func CreateVector(i uint8) Vector {
 	return make(Vector, i)
 }
 

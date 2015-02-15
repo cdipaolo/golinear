@@ -30,7 +30,7 @@ func solutionApproxEquals(a []float64, b []float64) bool {
 }
 
 // creates a blank (all zeros) Matrix of dimensions M by N
-func CreateMatrix(m int, n int) Matrix {
+func CreateMatrix(m uint8, n uint8) Matrix {
 	if m == 0 || n == 0 {return nil}
 	// fmt.Println("Creating ",m,n, "matrix")
 	a := make(Matrix, m)

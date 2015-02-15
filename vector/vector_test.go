@@ -230,7 +230,7 @@ func TestScale(t *testing.T) {
 
 func TestCreateVector(t *testing.T) {
 	for i:=0 ; i < 10 ; i++ {
-		v := CreateVector(i)
+		v := CreateVector(uint8(i))
 		if cap(v) != i {
 			t.Error(
 				"| CreateVector | expected", i,
