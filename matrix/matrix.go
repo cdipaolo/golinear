@@ -173,6 +173,23 @@ func (a Matrix) Solution(b []float64) (x []float64,err error) {
 	return
 }
 
+func (a Matrix) Rows() int {
+	return cap(a)
+}
+
+func (a Matrix) Columns() int {
+	return cap(a[0])
+}
+
+// scales a matrix by a scalar
+func (a Matrix) Scale(n float64) {
+	for i, _ := range a {
+		for j, _ := range a[0] {
+			a[i][j] *= n
+		}
+	}
+}
+
 // returns an identity matrix of size n x n
 func Identity(n int8) Matrix {
 	a := make(Matrix,n)
