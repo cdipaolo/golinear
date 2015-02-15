@@ -66,7 +66,7 @@ func TestGauss(t *testing.T) {
 func TestIdentity(t *testing.T){
 	for _, pair := range testIdentity {
 		i := Identity(pair.n)
-		if !(&i).IsEqualTo(&pair.i) {
+		if !(&i).Equals(&pair.i) {
 			t.Error(
 				"Expected", pair.i,
 				"got", i,

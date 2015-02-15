@@ -30,7 +30,7 @@ func solutionApproxEquals(a []float64, b []float64) bool {
 
 
 // returns a boolean to whether a matrix is of the same size and strictly equal to another matrix
-func (m *Matrix) IsEqualTo(a *Matrix) bool {
+func (m *Matrix) Equals(a *Matrix) bool {
 	if cap(*m) != cap(*a) || cap((*m)[0]) != cap((*a)[0]) {
 		// matrix sizes are not equal
 		return false
@@ -49,7 +49,7 @@ func (m *Matrix) IsEqualTo(a *Matrix) bool {
 }
 
 // returns bool to whether a matrix is approximately equal to another matrix under a given threshold ε
-func (m *Matrix) IsApproxEqualTo(a *Matrix, ε float64) bool {
+func (m *Matrix) ApproxEquals(a *Matrix, ε float64) bool {
 	if cap(*m) != cap(*a) || cap((*m)[0]) != cap((*a)[0]) {
 		// matrix sizes are not equal
 		return false
