@@ -1,5 +1,5 @@
 #golinear
-Golang implementation of linear algebra manipulations using float64 representations of vectors and matricies
+Golang implementation of linear algebra manipulations using float64 representations of vectors and matricies. To look at usage for available functions, just search for the comments and arguments 
 
 #Installation
 ####Step 1
@@ -13,8 +13,8 @@ In *your* Go source files, import the packages you want to use.
 
 ```golang
 import (
-	"matrix/matrix"
-	"matrix/vector"
+	"golinear/matrix"
+	"golinear/vector"
 	)
 ```
 
