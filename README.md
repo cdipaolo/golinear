@@ -1,5 +1,5 @@
 #golinear
-Golang implementation of linear algebra manipulations using float64 representations of vectors and matricies. To look at usage for available functions, just search for the comments and arguments 
+Golang implementation of linear algebra manipulations using ```float64``` representations of vectors and matricies. To look at usage for available functions, just search for the comments and arguments 
 
 #Installation
 ####Step 1
@@ -19,7 +19,7 @@ import (
 ```
 
 #Basic Usage
-After importing, you can initialize vectors or matricies using ```make(Vector,capacity)``` or ```make(Matrix,capacity)``` and, for matricies, individually allocating the rows. Or using the libraries functions as follows:
+The library's representation of matricies and vectors are just one or two dimensional arrays of ```float64```'s. After importing, you can initialize vectors or matricies using ```make(Vector,capacity)``` or ```make(Matrix,capacity)``` and, for matricies, individually allocating the rows. Or using the library's functions as follows:
 
 ```golang
 // create a zero-filled 4x4 matrix
