@@ -16,6 +16,11 @@ func (z Vector) Copy() Vector {
 	return v
 }
 
+// creates a zero-filled vector of capacity given in the arguments
+func CreateVector(i int) Vector {
+	return make(Vector, i)
+}
+
 // returns a bool as to whether Vector a is almost (very) equal to Vector b
 func (a Vector) ApproxEquals(b Vector) bool {
 	if cap(a) != cap(b) {return false}

@@ -1,6 +1,7 @@
 package matrix
 
 import "errors"
+// import "fmt"
 type Matrix [][]float64
 
 func abs(n float64) float64 {
@@ -26,6 +27,17 @@ func solutionApproxEquals(a []float64, b []float64) bool {
 		if diff > ε {return false}
 	}
 	return true
+}
+
+// creates a blank (all zeros) Matrix of dimensions M by N
+func CreateMatrix(m int, n int) Matrix {
+	if m == 0 || n == 0 {return nil}
+	// fmt.Println("Creating ",m,n, "matrix")
+	a := make(Matrix, m)
+	for i,_ := range a {
+		a[i] = make([]float64, n)
+	}
+	return a
 }
 
 

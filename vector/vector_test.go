@@ -227,3 +227,15 @@ func TestScale(t *testing.T) {
 		}
 	}
 }
+
+func TestCreateVector(t *testing.T) {
+	for i:=0 ; i < 10 ; i++ {
+		v := CreateVector(i)
+		if cap(v) != i {
+			t.Error(
+				"| CreateVector | expected", i,
+				"vector capacity got",cap(v),
+				)
+		}
+	}
+}

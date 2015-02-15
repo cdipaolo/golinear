@@ -54,7 +54,7 @@ func TestGauss(t *testing.T) {
 		for i,_ := range x {
 			if x[i] != pair.solution[i] {
 				t.Error(
-					"Expected solution", pair.solution,
+					"| Gauss | expected", pair.solution,
 					"got", x,
 					"from matrix", pair.m,
 					)
@@ -68,7 +68,7 @@ func TestIdentity(t *testing.T){
 		i := Identity(pair.n)
 		if !(&i).Equals(&pair.i) {
 			t.Error(
-				"Expected", pair.i,
+				"| Identity | sxpected", pair.i,
 				"got", i,
 				)
 		}
@@ -87,10 +87,43 @@ func TestSolution(t *testing.T) {
 		}
 		if !solutionApproxEquals(x, pair.solution) {
 			t.Error(
-				"Expected solution", pair.solution,
+				"| Solution | expected", pair.solution,
 				"got", x,
 				"from matrix", pair.a,
 				)
+		}
+	}
+}
+
+func TestCreateMatrix(t *testing.T) {
+	for i:=0 ; i < 10 ; i++ {
+		for j:=0 ; j < 10 ; j++ {
+			a := CreateMatrix(i,j)
+			if i != 0 && j != 0 {
+				if a.Columns() != j {
+					t.Error(
+						"| CreateMatrix | expected", i,
+						"rows,", j,
+						"columns. Got",a.Rows(),
+						"rows and" , a.Columns(),
+						"columns",
+						)
+				}
+				if a.Rows() != i {
+					t.Error(
+						"| CreateMatrix | expected", i,
+						"rows,", j,
+						"columns. Got",a.Rows(),
+						"rows and" , a.Columns(),
+						"columns",
+						)
+				}
+			} else if a != nil {
+				t.Error(
+					"| CreateMatrix | expected", nil,
+					"got", a,
+					)
+			}
 		}
 	}
 }
