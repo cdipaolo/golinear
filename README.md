@@ -10,6 +10,7 @@ git clone https://github.com/cdipaolo96/golinear.git
 '''
 ###Step 2
 In *your* Go source files, import the packages you want to use.
+
 '''golang
 import (
 	"matrix/matrix"
@@ -19,6 +20,7 @@ import (
 
 #Basic Usage
 After importing, you can initialize vectors or matricies using '''make(Vector,capacity)''' or '''make(Matrix,capacity)''' and, for matricies, individually allocating the rows. Or using the libraries functions as follows:
+
 '''golang
 // create a zero-filled 4x4 matrix
 matrix := CreateMatrix(4,4)
