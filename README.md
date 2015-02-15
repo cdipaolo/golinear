@@ -28,5 +28,25 @@ matrix := CreateMatrix(4,4)
 vector := CreateVector(9)
 ```
 
+#Available Functions
+Note– these are not in any specific order.
+
+Matrix  |  Vector
+:--------:|:---------:
+CreateMatrix(m uint8, n uint8) Matrix | CreateVector(i uint8) Vector
+Identity(n int8) Matrix | 
+(m *Matrix) Equals(a *Matrix) bool | (a Vector) Equals(b Vector) bool
+(m *Matrix) ApproxEquals(a *Matrix, ε float64) bool | (a Vector) ApproxEquals(b Vector) bool
+(m *Matrix) Copy() Matrix | (z Vector) Copy() Vector
+(a Matrix) Rows() int | (a Vector) Dot(b Vector) (float64, error)
+(a Matrix) Columns() int | (a Vector) Cross(b Vector) (float64, error)
+(a Matrix) Scale(n float64) | (a Vector) Angle(b Vector) (float64, error)
+(a Matrix) Gauss() ([]float64, error) | (a Vector) Plus(b Vector) error
+(a Matrix) Solution(b []float64) (x []float64,err error) | (a Vector) Minus(b Vector) error
+ | (a Vector) Abs() float64
+ | (a Vector) Scale(u float64)
+
+
+
 #Liscense - MIT
 See LISCENCE.
