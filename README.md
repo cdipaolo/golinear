@@ -1,4 +1,4 @@
-#golinear
+#golinear ![golinear](golinear2.png)
 Golang implementation of linear algebra manipulations using ```float64``` representations of vectors and matricies. To look at usage for available functions, just search for the comments and arguments 
 
 #Installation
